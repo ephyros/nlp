@@ -1,0 +1,17 @@
+{
+  "name": "nlp",
+  "description": "",
+  "main": "bench.js",
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "az": "^0.2.3"
+  }
+}
