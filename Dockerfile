@@ -6,7 +6,6 @@ WORKDIR /app
 
 # Install app dependencies
 RUN npm install
-RUN bower install
 
 ADD . .
 COPY ./.env.example ./.env
