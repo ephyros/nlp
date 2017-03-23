@@ -4,11 +4,11 @@ MAINTAINER Bogdan Savluk <savluk.bogdan@gmail.com>
 RUN mkdir /app
 WORKDIR /app
 
-# Install app dependencies
-RUN npm install
-
 ADD . .
 COPY ./.env.example ./.env
+
+# Install app dependencies
+RUN npm install
 
 
 
