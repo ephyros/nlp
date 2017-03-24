@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include partials/head.ejs %>
+<body>
+<div class="container">
+  <h1>Sentiment analysis</h1>
+  <% include partials/nav.ejs %>
+  <form method="post">
+    <div>
+        <% include partials/radios-node.ejs %>
+      <fieldset class="form-group">
+        <legend>Sentiment type</legend>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="type"  value="0" >
+              Negative
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="type" value="1" checked>
+            Positive
+          </label>
+        </div>
+      </fieldset>
+      <fieldset class="form-group">
+        <legend>Topic</legend>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="topic"  value="books" checked>
+              Books
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="topic" value="dvd" >
+              Films
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="topic" value="electronics" >
+              Electronics
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="topic" value="kitchen_&_housewares" >
+              Housewares
+          </label>
+        </div>
+      </fieldset>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>

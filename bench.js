@@ -7,13 +7,13 @@ var analyze = require('Sentimental').analyze;
 var request = require('request');
 
 
-function bench(f, reviews) {
+function bench(f, reviews, isPositive) {
   var hits = 0, total = 0;
   var d = new Date();
   _.each(reviews, function(review) {
     // console.log(sentim3(review))
     var score = f(review);
-    if(score <= 0) {
+    if((!isPositive && score <= 0) || (isPositive && score >= 0)) {
       hits ++;
     }
     total++;
@@ -21,6 +21,11 @@ function bench(f, reviews) {
   var time = new Date() - d;
   console.log('hits: ' + hits + '/' + total );
   console.log('time: ' + time );
+  return {
+    hits: hits,
+    total: total,
+    time: time
+  }
 }
 
 
@@ -41,11 +46,12 @@ function sentim3 ( text ) {
 
 
 
-var xmlN = fs.readFileSync('data/sorted_data_acl/dvd/negative.review', 'utf8');
 var xmlP = fs.readFileSync('data/sorted_data_acl/dvd/positive.review', 'utf8');
 var inspect = require('util').inspect;
 
-function extractReviews(xml) {
+function extractReviews(topic, sentiment) {
+
+  var xml = fs.readFileSync('data/sorted_data_acl/' + topic + '/' + sentiment+ '.review', 'utf8');
   var obj = parse(xml);
   var arr = obj.root.children;
   var reviews = [];
@@ -122,6 +128,8 @@ function japerk ( i ) {
 module.exports = {
   nodeAnalyzers:  function() {
     return [sentim1, sentim2, sentim3];
-  }
+  },
+  bench: bench,
+  extractReviews: extractReviews
 };
 

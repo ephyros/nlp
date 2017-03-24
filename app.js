@@ -14,20 +14,36 @@ app.use(express.static('public'));
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
+app.set('view engine', 'ejs');
 
 app.get('/',function(req,res){
 
-  res.sendFile('public/index.html', { root: __dirname });
-
+  res.render('index', {path: req.route.path});
 
 });
 
-app.post('/sentiment', function (req, res) {
+app.get('/bench',function(req,res){
 
-  var i = parseInt(req.body.type);
+  res.render('bench', {path: req.route.path});
+
+});
+
+app.post('/', function (req, res) {
+
+  var i = parseInt(req.body.lib);
   var analyzer = nodeAnalyzers[i];
   var mark = analyzer(req.body.text);
   res.json({mark: mark});
+});
+
+app.post('/bench', function (req, res) {
+
+  var i = parseInt(req.body.lib);
+  var analyzer = nodeAnalyzers[i];
+  var isPositive = req.body.type === "1";
+  var reviews = bench.extractReviews(req.body.topic, isPositive ? 'positive' : 'negative');
+  var benchmarks = bench.bench(analyzer, reviews, isPositive);
+  res.json(benchmarks);
 });
 
 app.listen(port);
