@@ -9,6 +9,7 @@ COPY ./.env.example ./.env
 
 # Install app dependencies
 RUN npm install
+RUN npm install supervisor -g
 
 
 
@@ -22,4 +23,4 @@ ENV PORT=8080
 ENV SSR=1
 
 EXPOSE 8080
-CMD node ./app.js
+CMD supervisor ./app.js

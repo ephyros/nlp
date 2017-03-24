@@ -13,7 +13,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
           integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
           crossorigin="anonymous"></script>
-
+  <title>Opsway NLP Demo</title>
   <script src="compromise.js"></script>
   <script src="nlp.js"></script>
 </head>
@@ -22,26 +22,31 @@
   <h1>Sentiment analysis</h1>
   <form action="sentiment" method="post">
     <div>
-
-
       <fieldset class="form-group">
         <legend>Node libraries</legend>
         <div class="form-check">
           <label class="form-check-label">
             <input type="radio" class="form-check-input" name="type" id="optionsRadios1" value="0" checked>
-            ml-sentiment
+
+            <a href="https://github.com/syzer/sentiment-analyser">
+              ml-sentiment
+            </a>
           </label>
         </div>
         <div class="form-check">
           <label class="form-check-label">
             <input type="radio" class="form-check-input" name="type" id="optionsRadios2" value="1">
-            sentiment
+            <a href="https://github.com/winster/sentiment">
+              sentiment
+            </a>
           </label>
         </div>
         <div class="form-check disabled">
           <label class="form-check-label">
             <input type="radio" class="form-check-input" name="type" id="optionsRadios3" value="2">
+            <a href="https://github.com/thinkroth/Sentimental">
             Sentimental
+            </a>
           </label>
         </div>
       </fieldset>
