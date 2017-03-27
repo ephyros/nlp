@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include partials/head.ejs %>
+<body>
+<div class="container">
+  <h1>Sentiment analysis</h1>
+  <% include partials/nav.ejs %>
+  <form method="post">
+    <div>
+      <fieldset class="form-group">
+        <legend>APIs</legend>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="lib" id="optionsRadios1" value="0" checked>
+
+            <a href="https://market.mashape.com/japerk/text-processing">
+              Japerk
+            </a>
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="lib" id="optionsRadios2" value="1">
+            <a href="https://market.mashape.com/sentinelprojects/skyttle2-0">
+              Skyttle
+            </a>
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="lib" id="optionsRadios3" value="2">
+            <a href="https://market.mashape.com/webknox/text-processing-1#detect-sentiment">
+              Webknox
+            </a>
+          </label>
+        </div>
+      </fieldset>
+
+
+      <div class="form-group">
+      <textarea class="form-control" name="text" id="text" rows="20">
+        <% include partials/review.ejs %>
+      </textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>

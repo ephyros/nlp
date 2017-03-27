@@ -5,6 +5,7 @@
 var express = require('express');
 var bodyParser = require('body-parser')
 var bench = require('./bench.js');
+require('dotenv').config()
 var port = process.env.PORT;
 
 var app = express();
@@ -28,6 +29,12 @@ app.get('/bench',function(req,res){
 
 });
 
+app.get('/apis',function(req,res){
+
+  res.render('apis', {path: req.route.path});
+
+});
+
 app.post('/', function (req, res) {
 
   var i = parseInt(req.body.lib);
@@ -44,6 +51,16 @@ app.post('/bench', function (req, res) {
   var reviews = bench.extractReviews(req.body.topic, isPositive ? 'positive' : 'negative');
   var benchmarks = bench.bench(analyzer, reviews, isPositive);
   res.json(benchmarks);
+});
+
+app.post('/apis', function (req, res) {
+
+  var i = parseInt(req.body.lib);
+  var analyzer = bench.apiAnalyzers()[i];
+  analyzer(req.body.text, function (error, response, body) {
+    console.log("response: " + response);
+    res.json(response);
+  });
 });
 
 app.listen(port);

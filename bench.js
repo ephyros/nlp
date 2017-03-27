@@ -5,6 +5,8 @@ var sentiment = require('sentiment');
 var ml = require('ml-sentiment')();
 var analyze = require('Sentimental').analyze;
 var request = require('request');
+var inspect = require('util').inspect;
+require('dotenv').config();
 
 
 function bench(f, reviews, isPositive) {
@@ -44,14 +46,13 @@ function sentim3 ( text ) {
 }
 
 
+function extractReviewsByTopic(topic, sentiment) {
+  var xml = 'data/sorted_data_acl/' + topic + '/' + sentiment + '.review';
+  return extractReviews(xml)
+}
 
-
-var xmlP = fs.readFileSync('data/sorted_data_acl/dvd/positive.review', 'utf8');
-var inspect = require('util').inspect;
-
-function extractReviews(topic, sentiment) {
-
-  var xml = fs.readFileSync('data/sorted_data_acl/' + topic + '/' + sentiment+ '.review', 'utf8');
+function extractReviews (file) {
+  var xml = fs.readFileSync(file,  'utf8');
   var obj = parse(xml);
   var arr = obj.root.children;
   var reviews = [];
@@ -62,7 +63,8 @@ function extractReviews(topic, sentiment) {
   return _.flatten(reviews);
 }
 
-// var reviews = extractReviews(xmlP);
+var reviews = extractReviews('data/sorted_data_acl/dvd/positive.review');
+
 //
 // _.each({
 //   "syzer/sentiment-analyser": sentim1,
@@ -76,9 +78,13 @@ function extractReviews(topic, sentiment) {
 
 
 var hits = 0, total = 0, i = 0;
-function japerk ( i ) {
+function apiRequest ( options, callback ) {
+  console.log('request: ' + options.url);
+  request.post(options, callback);
+}
 
-  var options = {
+function japerk(text, callback) {
+  return apiRequest({
     url: 'https://japerk-text-processing.p.mashape.com/sentiment/',
     method: "POST",
     headers: {
@@ -86,8 +92,43 @@ function japerk ( i ) {
       'X-Mashape-Key': process.env.MASHAPE_KEY,
       'Accept': 'application/json'
     },
-    form: {language:'english', text: reviews[i]}
-  };
+    form: {language: 'english', text: text}
+  }, callback);
+}
+
+
+function skyttle(text, callback) {
+  return apiRequest({
+    url: 'https://sentinelprojects-skyttle20.p.mashape.com/',
+    method: "POST",
+    headers: {
+      'Content-type': 'x-www-form-urlencoded',
+      'X-Mashape-Key': process.env.MASHAPE_KEY,
+      'Accept': 'application/json'
+    },
+    form: {
+      lang: 'en',
+      annotate: 1,
+      keywords: 1,
+      sentiment: 1,
+      text: text
+    }
+  }, callback);
+}
+
+function webknox(text, callback) {
+  return apiRequest({
+    url: 'https://webknox-text-processing.p.mashape.com/text/sentiment?language=en&text=' + encodeURIComponent(text),
+    method: "GET",
+    headers: {
+      'X-Mashape-Key': process.env.MASHAPE_KEY,
+      'Accept': 'application/json'
+    }
+  }, callback);
+}
+
+
+function japerkBench ( i ) {
 
   function callback(error, response, body) {
     // console.log("callback function");
@@ -101,7 +142,7 @@ function japerk ( i ) {
       }
       total++;
       if(i<100) {
-        japerk(++i);
+        japerkBench(++i);
       } else {
         console.log('hits: ' + hits + '/' + total );
       }
@@ -110,15 +151,13 @@ function japerk ( i ) {
       console.log(JSON.parse(body));
     }
   }
-
-  request.post(options, callback);
+  return japerk(reviews[i], callback)
 
 }
 
 
 
-
-// var res = japerk(0);
+// var res = japerkReview(0);
 
 // var sent = "It's fucking cunt cunt cunt cunt";
 // console.log(sentim1(sent));
@@ -129,7 +168,15 @@ module.exports = {
   nodeAnalyzers:  function() {
     return [sentim1, sentim2, sentim3];
   },
+  apiAnalyzers: function() {
+    return [japerk, skyttle, webknox];
+  },
   bench: bench,
-  extractReviews: extractReviews
+  extractReviews: extractReviewsByTopic
 };
+
+// japerkBench(98);
+
+
+
 
