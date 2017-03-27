@@ -108,8 +108,8 @@ function skyttle(text, callback) {
     },
     form: {
       lang: 'en',
-      annotate: 1,
-      keywords: 1,
+      annotate: 0,
+      keywords: 0,
       sentiment: 1,
       text: text
     }
