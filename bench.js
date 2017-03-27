@@ -118,12 +118,14 @@ function skyttle(text, callback) {
 
 function webknox(text, callback) {
   return apiRequest({
-    url: 'https://webknox-text-processing.p.mashape.com/text/sentiment?language=en&text=' + encodeURIComponent(text),
-    method: "GET",
+    url: 'https://webknox-text-processing.p.mashape.com/text/sentiment/',
+    method: "POST",
     headers: {
       'X-Mashape-Key': process.env.MASHAPE_KEY,
-      'Accept': 'application/json'
-    }
+      'Accept': 'application/json',
+      'Content-type': 'x-www-form-urlencoded'
+    },
+    form: {language: 'en', text: text}
   }, callback);
 }
 
