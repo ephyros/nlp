@@ -49,9 +49,9 @@ var mail =
 
 "I look forward to meeting you on Thursday, May 23, to further discuss the business incubation programme that was designed by the World Bank. Thursday evening is a good time for me." +
 
-"  Two of my associates, Jay Abraham and Robert Kiyosaki, are planning to meet with you as well. We are very excited to be a part of this project, especially being in the same team with you. " +
+"  Two of my associates, Jay Abraham and Robert Kiyosaki, are planning to meet with you at Lehigh Valley as well. We are very excited to be a part of this project, especially being in the same team with you. " +
 
-  " Cordially, Krissie Brandan. ",
+  " Cheers, Steve Henning. ",
 
 
   mail3 = "  05/05/2010, at 23:35, S. M. Henning escribió:" +

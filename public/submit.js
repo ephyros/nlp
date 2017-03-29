@@ -2,14 +2,14 @@ class RecogForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      action: 0,
+      action: '0',
       text: " Dear Dr. Ronald, "+
 
       "I look forward to meeting you on Thursday, May 23, to further discuss the business incubation programme that was designed by the World Bank. Thursday evening is a good time for me." +
 
-      "  Two of my associates, Jay Abraham and Robert Kiyosaki, are planning to meet with you as well. We are very excited to be a part of this project, especially being in the same team with you. " +
+      " Two of my associates, Jay Abraham and Robert Kiyosaki, are planning to meet with you in Liverpool as well. We are very excited to be a part of this project, especially being in the same team with you. " +
 
-      " Cordially, Krissie Brandan. ",
+      " Cheers, Kara Brandan. ",
       result: ""
     };
 
@@ -27,17 +27,33 @@ class RecogForm extends React.Component {
   }
 
   handleSubmit(event) {
+    event.preventDefault();
      let compromise = nlp(this.state.text);
       // .nouns().toSingular();
-     let result = compromise.dates();
+    let result = '';
+    switch(this.state.action) {
+      case '0': {
+        result = compromise.dates();
+        break;
+      }
+     case '1': {
+       result = compromise.people();
+       break;
+     }
+     case '2': {
+        result = compromise.places();
+        break;
+      }
+    }
+    console.log(result);
+    let text = result.out('text');
       // .dates(),
       // .sentences().toNegative();
       // .match('#Person');
       // .people(),
-    this.setState({result: result.out('text')});
+    this.setState({result: text});
 
-    alert(this.state.result);
-    event.preventDefault();
+    // alert(this.state.result);
   }
 
   render() {
@@ -45,11 +61,12 @@ class RecogForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <div>
         <fieldset className="form-group"  onChange={this.handleActionChange}>
+          <p>{ this.state.result }</p>
           <legend>Action</legend>
           <div className="form-check">
             <label className="form-check-label">
               <input type="radio" className="form-check-input" name="action" id="optionsRadios1" value="0" defaultChecked/>
-              Find dates
+               Find dates
             </label>
           </div>
           <div className="form-check">
@@ -66,12 +83,9 @@ class RecogForm extends React.Component {
           </div>
         </fieldset>
 
-        <label>
-          Message:
           <div className="form-group">
             <textarea className="form-control" rows="20" value={this.state.text} onChange={this.handleTextChange} />
           </div>
-        </label>
         <input type="submit"  className="btn btn-primary" value="Submit" />
         </div>
       </form>

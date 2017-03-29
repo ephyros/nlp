@@ -17,8 +17,8 @@ var RecogForm = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (RecogForm.__proto__ || Object.getPrototypeOf(RecogForm)).call(this, props));
 
     _this.state = {
-      action: 0,
-      text: " Dear Dr. Ronald, " + "I look forward to meeting you on Thursday, May 23, to further discuss the business incubation programme that was designed by the World Bank. Thursday evening is a good time for me." + "  Two of my associates, Jay Abraham and Robert Kiyosaki, are planning to meet with you as well. We are very excited to be a part of this project, especially being in the same team with you. " + " Cordially, Krissie Brandan. ",
+      action: '0',
+      text: " Dear Dr. Ronald, " + "I look forward to meeting you on Thursday, May 23, to further discuss the business incubation programme that was designed by the World Bank. Thursday evening is a good time for me." + " Two of my associates, Jay Abraham and Robert Kiyosaki, are planning to meet with you in Liverpool as well. We are very excited to be a part of this project, especially being in the same team with you. " + " Cheers, Kara Brandan. ",
       result: ""
     };
 
@@ -41,17 +41,36 @@ var RecogForm = function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(event) {
+      event.preventDefault();
       var compromise = nlp(this.state.text);
       // .nouns().toSingular();
-      var result = compromise.dates();
+      var result = '';
+      switch (this.state.action) {
+        case '0':
+        {
+          result = compromise.dates();
+          break;
+        }
+        case '1':
+        {
+          result = compromise.people();
+          break;
+        }
+        case '2':
+        {
+          result = compromise.places();
+          break;
+        }
+      }
+      console.log(result);
+      var text = result.out('text');
       // .dates(),
       // .sentences().toNegative();
       // .match('#Person');
       // .people(),
-      this.setState({ result: result.out('text') });
+      this.setState({ result: text });
 
-      alert(this.state.result);
-      event.preventDefault();
+      // alert(this.state.result);
     }
   }, {
     key: "render",
@@ -65,6 +84,11 @@ var RecogForm = function (_React$Component) {
           React.createElement(
             "fieldset",
             { className: "form-group", onChange: this.handleActionChange },
+            React.createElement(
+              "p",
+              null,
+              this.state.result
+            ),
             React.createElement(
               "legend",
               null,
@@ -102,14 +126,9 @@ var RecogForm = function (_React$Component) {
             )
           ),
           React.createElement(
-            "label",
-            null,
-            "Message:",
-            React.createElement(
-              "div",
-              { className: "form-group" },
-              React.createElement("textarea", { className: "form-control", rows: "20", value: this.state.text, onChange: this.handleTextChange })
-            )
+            "div",
+            { className: "form-group" },
+            React.createElement("textarea", { className: "form-control", rows: "20", value: this.state.text, onChange: this.handleTextChange })
           ),
           React.createElement("input", { type: "submit", className: "btn btn-primary", value: "Submit" })
         )
