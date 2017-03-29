@@ -54,7 +54,7 @@ var mail =
   " Cordially, Krissie Brandan. ",
 
 
-  mail3 = " El 05/05/2010, a las 23:35, S. M. Henning escribió:" +
+  mail3 = "  05/05/2010, at 23:35, S. M. Henning escribió:" +
 
 "We are Mac@LehighValley or M@LV.  The Lehigh Valley is aka Allentown-Bethlehem-Easton, PA. " +
 "" +

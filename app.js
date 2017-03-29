@@ -35,6 +35,12 @@ app.get('/apis',function(req,res){
 
 });
 
+app.get('/client',function(req,res){
+
+  res.render('client', {path: req.route.path});
+
+});
+
 app.post('/', function (req, res) {
 
   var i = parseInt(req.body.lib);
