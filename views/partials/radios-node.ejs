@@ -2,7 +2,7 @@
     <legend>Node libraries</legend>
     <div class="form-check">
         <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="lib" id="optionsRadios1" value="0" checked>
+            <input type="radio" class="form-check-input" name="lib" id="optionsRadios1" value="0" <% if(form.lib == "0") { %>checked<% } %>>
             ml-sentiment (
             <a href="https://github.com/syzer/sentiment-analyser">
                 link
@@ -12,7 +12,7 @@
     </div>
     <div class="form-check">
         <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="lib" id="optionsRadios2" value="1">
+            <input type="radio" class="form-check-input" name="lib" id="optionsRadios2" value="1" <% if(form.lib == "1") { %>checked<% } %>>
             sentiment(
             <a href="https://github.com/winster/sentiment">
                 link
@@ -22,7 +22,7 @@
     </div>
     <div class="form-check">
         <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="lib" id="optionsRadios3" value="2">
+            <input type="radio" class="form-check-input" name="lib" id="optionsRadios3" value="2" <% if(form.lib == "2") { %>checked<% } %>>
             Sentimental (
             <a href="https://github.com/thinkroth/Sentimental">
                 link

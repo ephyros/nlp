@@ -13,7 +13,7 @@
                       ? 'danger'
                       : 'warning' %>" role="alert">
           <%= label %> <br>
-        Probability: <%= probability %> <br>
+        Probability: <%= probability %> % <br>
         Remaining requests: <%= remains %>
       </div>
         <% } %>
@@ -53,12 +53,7 @@
 
 
       <div class="form-group">
-      <textarea class="form-control" name="text" id="text" rows="20">
-<% if (typeof form !== 'undefined') { %>
-<%= form.text%>
-<% } else { %>
-<% include partials/review.ejs %>
-<% } %>
+      <textarea class="form-control" name="text" id="text" rows="20"><% if (typeof form !== 'undefined') { %><%= form.text%><% } else { %><% include partials/review.ejs %><% } %>
       </textarea>
       </div>
 

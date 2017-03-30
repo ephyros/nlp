@@ -22,13 +22,15 @@ app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
 
-  res.render('index', {path: req.route.path});
+  res.render('index', {path: req.route.path
+    // , form: {lib: "0"}
+  });
 
 });
 
 app.get('/bench', function (req, res) {
 
-  res.render('bench', {path: req.route.path});
+  res.render('bench', {path: req.route.path, form: {lib: "0"}});
 
 });
 
@@ -74,9 +76,13 @@ app.post('/apis', function (req, res) {
     var probability;
     var label;
     var parsed = JSON.parse(body.replace('\n', ''));
+    function probabilityToPercents() {
+      probability = Math.round(probability * 100);
+    }
     if (i == 0) { // japerk
       label = parsed.label;
       probability = parsed.probability[label];
+      probabilityToPercents();
       remains = response.headers["x-ratelimit-queries-remaining"];
     } else if (i == 1) { // skyttle
       var scores = parsed.docs[0]["sentiment_scores"];
@@ -85,6 +91,7 @@ app.post('/apis', function (req, res) {
       remains = response.headers["x-ratelimit-requests-remaining"];
     } else if (i == 2) { // webknox
       probability = parsed.document.confidence;
+      probabilityToPercents();
       label = parsed.document.sentimentWithNeutral.substring(0,3);
       remains = response.headers["x-ratelimit-requests-remaining"];
     }
