@@ -6,6 +6,17 @@
   <% include partials/nav.ejs %>
   <form method="post">
     <div>
+        <% if (typeof label !== 'undefined') { %>
+      <div class="alert alert-<%= (label === 'pos')
+              ? 'success'
+              : (label === 'neg')
+                      ? 'danger'
+                      : 'warning' %>" role="alert">
+          <%= label %> <br>
+        Probability: <%= probability %> <br>
+        Remaining requests: <%= remains %>
+      </div>
+        <% } %>
       <fieldset class="form-group">
         <legend>APIs</legend>
         <div class="form-check">

@@ -123,7 +123,7 @@ function webknox(text, callback) {
     headers: {
       'X-Mashape-Key': process.env.MASHAPE_KEY,
       'Accept': 'application/json',
-      'Content-type': 'x-www-form-urlencoded'
+      
     },
     form: {language: 'en', text: text}
   }, callback);
