@@ -57,11 +57,14 @@ class RecogForm extends React.Component {
   }
 
   render() {
+    let alert = (!!this.state.result) ?
+      <div className="alert alert-info" role="alert">{this.state.result}</div>
+      : "";
     return (
       <form onSubmit={this.handleSubmit}>
         <div>
         <fieldset className="form-group"  onChange={this.handleActionChange}>
-          <p>{ this.state.result }</p>
+            { alert }
           <legend>Action</legend>
           <div className="form-check">
             <label className="form-check-label">

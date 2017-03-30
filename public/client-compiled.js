@@ -75,6 +75,11 @@ var RecogForm = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var alert = !!this.state.result ? React.createElement(
+          "div",
+          { className: "alert alert-info", role: "alert" },
+          this.state.result
+        ) : "";
       return React.createElement(
         "form",
         { onSubmit: this.handleSubmit },
@@ -84,11 +89,7 @@ var RecogForm = function (_React$Component) {
           React.createElement(
             "fieldset",
             { className: "form-group", onChange: this.handleActionChange },
-            React.createElement(
-              "p",
-              null,
-              this.state.result
-            ),
+            alert,
             React.createElement(
               "legend",
               null,
