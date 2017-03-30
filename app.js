@@ -57,7 +57,8 @@ app.post('/bench', function (req, res) {
   var isPositive = req.body.type === "1";
   var reviews = bench.extractReviews(req.body.topic, isPositive ? 'positive' : 'negative');
   var benchmarks = bench.bench(analyzer, reviews, isPositive);
-  res.json(benchmarks);
+
+  res.render('bench', {path: req.route.path, benchmarks: benchmarks, form: req.body});
 });
 
 app.post('/apis', function (req, res) {

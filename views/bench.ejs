@@ -3,10 +3,15 @@
 <% include partials/head.ejs %>
 <body>
 <div class="container">
-  <h1>Sentiment analysis</h1>
   <% include partials/nav.ejs %>
   <form method="post">
     <div>
+        <% if (typeof benchmarks !== 'undefined') { %>
+      <div class="alert alert-info" role="alert">
+        Hits:  <%= benchmarks.hits  %>/<%= benchmarks.total %><br>
+        Time:  <%= benchmarks.time  %>ms
+      </div>
+        <% } %>
         <% include partials/radios-node.ejs %>
       <fieldset class="form-group">
         <legend>Sentiment type</legend>
