@@ -23,7 +23,7 @@ app.set('view engine', 'ejs');
 app.get('/', function (req, res) {
 
   res.render('index', {path: req.route.path
-    // , form: {lib: "0"}
+    , form: {lib: "0"}
   });
 
 });

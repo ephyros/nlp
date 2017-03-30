@@ -21,12 +21,7 @@
         <% } %>
         <% include partials/radios-node.ejs %>
       <div class="form-group">
-      <textarea class="form-control" name="text" id="text" rows="20">
-<% if (typeof form !== 'undefined') { %>
-<%= form.text%>
-<% } else { %>
-<% include partials/review.ejs %>
-<% } %>
+      <textarea class="form-control" name="text" id="text" rows="20"><% if (typeof form.text !== 'undefined') { %><%= form.text%><% } else { %><% include partials/review.ejs %><% } %>
       </textarea>
       </div>
 
