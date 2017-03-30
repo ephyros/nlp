@@ -3,14 +3,30 @@
 <% include partials/head.ejs %>
 <body>
 <div class="container">
-  <h1>Sentiment analysis</h1>
   <% include partials/nav.ejs %>
   <form method="post">
     <div>
+        <% if (typeof mark !== 'undefined') { %>
+      <div class="alert alert-<%= (mark>0)
+              ? 'success'
+              : (mark<0)
+                      ? 'danger'
+                      : 'warning' %>" role="alert">
+          <%= mark %> (<%= (mark>0)
+                ? 'Positive'
+                : (mark<0)
+                        ? 'Negative'
+                        : 'Neutral' %>)
+      </div>
+        <% } %>
         <% include partials/radios-node.ejs %>
       <div class="form-group">
       <textarea class="form-control" name="text" id="text" rows="20">
-        <% include partials/review.ejs %>
+<% if (typeof form !== 'undefined') { %>
+<%= form.text%>
+<% } else { %>
+<% include partials/review.ejs %>
+<% } %>
       </textarea>
       </div>
 

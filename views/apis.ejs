@@ -44,7 +44,11 @@
 
       <div class="form-group">
       <textarea class="form-control" name="text" id="text" rows="20">
-        <% include partials/review.ejs %>
+<% if (typeof form !== 'undefined') { %>
+<%= form.text%>
+<% } else { %>
+<% include partials/review.ejs %>
+<% } %>
       </textarea>
       </div>
 

@@ -46,7 +46,8 @@ app.post('/', function (req, res) {
   var i = parseInt(req.body.lib);
   var analyzer = nodeAnalyzers[i];
   var mark = analyzer(req.body.text);
-  res.json({mark: mark});
+
+  res.render('index', {path: req.route.path, mark: mark, form: req.body});
 });
 
 app.post('/bench', function (req, res) {
