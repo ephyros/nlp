@@ -21,7 +21,7 @@
         <legend>APIs</legend>
         <div class="form-check">
           <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="lib" id="optionsRadios1" value="0" checked>
+            <input type="radio" class="form-check-input" name="lib" id="optionsRadios1" value="0"  <% if(form.lib == "0") { %>checked<% } %>>
             Japerk (
             <a href="https://market.mashape.com/japerk/text-processing">
               link
@@ -31,7 +31,7 @@
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="lib" id="optionsRadios2" value="1">
+            <input type="radio" class="form-check-input" name="lib" id="optionsRadios2" value="1"  <% if(form.lib == "1") { %>checked<% } %>>
             Skyttle (
             <a href="https://market.mashape.com/sentinelprojects/skyttle2-0">
               link
@@ -41,7 +41,7 @@
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="lib" id="optionsRadios3" value="2">
+            <input type="radio" class="form-check-input" name="lib" id="optionsRadios3" value="2"  <% if(form.lib == "2") { %>checked<% } %>>
             Webknox (
             <a href="https://market.mashape.com/webknox/text-processing-1#detect-sentiment">
               link
@@ -53,7 +53,7 @@
 
 
       <div class="form-group">
-      <textarea class="form-control" name="text" id="text" rows="20"><% if (typeof form !== 'undefined') { %><%= form.text%><% } else { %><% include partials/review.ejs %><% } %>
+      <textarea class="form-control" name="text" id="text" rows="20"><% if (typeof form.text !== 'undefined') { %><%= form.text%><% } else { %><% include partials/review.ejs %><% } %>
       </textarea>
       </div>
 

@@ -30,13 +30,20 @@ app.get('/', function (req, res) {
 
 app.get('/bench', function (req, res) {
 
-  res.render('bench', {path: req.route.path, form: {lib: "0"}});
+  res.render('bench', {path: req.route.path, form:
+    {
+      lib: "0",
+      topic: "books",
+      type: "1"
+    }});
 
 });
 
 app.get('/apis', function (req, res) {
 
-  res.render('apis', {path: req.route.path});
+  res.render('apis', {path: req.route.path, form: {
+    lib: "0"
+  }});
 
 });
 

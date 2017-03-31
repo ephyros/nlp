@@ -17,13 +17,13 @@
         <legend>Sentiment type</legend>
         <div class="form-check">
           <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="type"  value="0" >
+            <input type="radio" class="form-check-input" name="type"  value="0"  <% if(form.type == "0") { %>checked<% } %>>
               Negative
           </label>
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="type" value="1" checked>
+            <input type="radio" class="form-check-input" name="type" value="1" <% if(form.type == "1") { %>checked<% } %>>
             Positive
           </label>
         </div>
@@ -32,25 +32,25 @@
         <legend>Topic</legend>
         <div class="form-check">
           <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="topic"  value="books" checked>
+            <input type="radio" class="form-check-input" name="topic"  value="books" <% if(form.topic == "books") { %>checked<% } %>>
               Books
           </label>
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="topic" value="dvd" >
+            <input type="radio" class="form-check-input" name="topic" value="dvd"  <% if(form.topic == "dvd") { %>checked<% } %>>
               Films
           </label>
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="topic" value="electronics" >
+            <input type="radio" class="form-check-input" name="topic" value="electronics"  <% if(form.topic == "electronics") { %>checked<% } %>>
               Electronics
           </label>
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="topic" value="kitchen_&_housewares" >
+            <input type="radio" class="form-check-input" name="topic" value="kitchen_&_housewares"  <% if(form.topic == "kitchen_&_housewares") { %>checked<% } %>>
               Housewares
           </label>
         </div>
