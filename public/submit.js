@@ -3,7 +3,7 @@ class RecogForm extends React.Component {
     super(props);
     this.state = {
       action: '0',
-      text: " Dear Dr. Ronald, "+
+      text: "Dear Dr. Ronald, "+
 
       "I look forward to meeting you on Thursday, May 23, to further discuss the business incubation programme that was designed by the World Bank. Thursday evening is a good time for me." +
 
@@ -69,19 +69,19 @@ class RecogForm extends React.Component {
           <div className="form-check">
             <label className="form-check-label">
               <input type="radio" className="form-check-input" name="action" id="optionsRadios1" value="0" defaultChecked/>
-               Find dates
+               &nbsp;Find dates
             </label>
           </div>
           <div className="form-check">
             <label className="form-check-label">
               <input type="radio" className="form-check-input" name="action" id="optionsRadios2" value="1"/>
-              Find people
+              &nbsp;Find people
             </label>
           </div>
           <div className="form-check">
             <label className="form-check-label">
               <input type="radio" className="form-check-input" name="action" id="optionsRadios3" value="2"/>
-              Find places
+              &nbsp;Find places
             </label>
           </div>
         </fieldset>

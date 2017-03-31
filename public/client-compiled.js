@@ -18,7 +18,7 @@ var RecogForm = function (_React$Component) {
 
     _this.state = {
       action: '0',
-      text: " Dear Dr. Ronald, " + "I look forward to meeting you on Thursday, May 23, to further discuss the business incubation programme that was designed by the World Bank. Thursday evening is a good time for me." + " Two of my associates, Jay Abraham and Robert Kiyosaki, are planning to meet with you in Liverpool as well. We are very excited to be a part of this project, especially being in the same team with you. " + " Cheers, Kara Brandan. ",
+      text: "Dear Dr. Ronald, " + "I look forward to meeting you on Thursday, May 23, to further discuss the business incubation programme that was designed by the World Bank. Thursday evening is a good time for me." + " Two of my associates, Jay Abraham and Robert Kiyosaki, are planning to meet with you in Liverpool as well. We are very excited to be a part of this project, especially being in the same team with you. " + " Cheers, Kara Brandan. ",
       result: ""
     };
 
@@ -102,7 +102,7 @@ var RecogForm = function (_React$Component) {
                 "label",
                 { className: "form-check-label" },
                 React.createElement("input", { type: "radio", className: "form-check-input", name: "action", id: "optionsRadios1", value: "0", defaultChecked: true }),
-                "Find dates"
+                "\xA0Find dates"
               )
             ),
             React.createElement(
@@ -112,7 +112,7 @@ var RecogForm = function (_React$Component) {
                 "label",
                 { className: "form-check-label" },
                 React.createElement("input", { type: "radio", className: "form-check-input", name: "action", id: "optionsRadios2", value: "1" }),
-                "Find people"
+                "\xA0Find people"
               )
             ),
             React.createElement(
@@ -122,7 +122,7 @@ var RecogForm = function (_React$Component) {
                 "label",
                 { className: "form-check-label" },
                 React.createElement("input", { type: "radio", className: "form-check-input", name: "action", id: "optionsRadios3", value: "2" }),
-                "Find places"
+                "\xA0Find places"
               )
             )
           ),
